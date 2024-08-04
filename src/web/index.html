@@ -11,7 +11,13 @@
     ></script>
   </head>
   <body>
-    <form hx-post="/obfuscation" hx-target="#results" hx-select="#results">
+    <form
+      action="/obfuscation"
+      method="post"
+      data-hx-post="/obfuscation"
+      data-hx-target="#results"
+      data-hx-select="#results"
+    >
       <label>
         Take the following phrase:
         <input
