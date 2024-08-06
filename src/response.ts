@@ -111,5 +111,6 @@ export const buildSuccessResponse = (results: TranslationResults) =>
     status: 200,
     headers: {
       "Content-Type": "text/html",
+      "Cache-Control": "max-age=3600",
     },
   });

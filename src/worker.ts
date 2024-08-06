@@ -14,9 +14,9 @@ import {
 const fetch = async (req: Request, env: any): Promise<Response> => {
   const url = new URL(req.url);
 
-  // POST /obfuscation
-  if (url.pathname.startsWith("/obfuscation") && req.method === "POST") {
-    const data = await req.formData();
+  // GET /obfuscation
+  if (url.pathname.startsWith("/obfuscation") && req.method === "GET") {
+    const data = url.searchParams;
 
     const validation = validate(data);
 

@@ -24,8 +24,8 @@
   <body>
     <form
       action="/obfuscation"
-      method="post"
-      data-hx-post="/obfuscation"
+      method="get"
+      data-hx-get="/obfuscation"
       data-hx-target="#result"
       data-hx-select="#result"
       data-hx-indicator="#indicator"
@@ -143,8 +143,8 @@
       </label>
       Then back to the original language
       <button type="submit">Obfuscate</button>
-      <p id="indicator" class="htmx-indicator">Loading</p>
     </form>
+    <p id="indicator" class="htmx-indicator">Loading</p>
     <div id="result"></div>
   </body>
 </html>

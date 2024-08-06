@@ -54,7 +54,7 @@ type ValidationOutput = {
 };
 
 export const validate = (
-  data: FormData
+  data: URLSearchParams
 ): Result<ValidationOutput, ValidationError[]> => {
   const errors: ValidationError[] = [];
 
