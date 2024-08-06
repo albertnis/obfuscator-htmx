@@ -1,4 +1,5 @@
 import { FormData } from "@cloudflare/workers-types";
+import type { Result } from "./types";
 
 const validLangs = [
   "ar",
@@ -23,53 +24,92 @@ const validLangs = [
   "tr",
 ];
 
-type ValidationOutput =
+export type ValidationError =
   | {
-      valid: true;
-      langs: string[];
-      text: string;
+      code: "TEXT_MISSING";
     }
-  | { valid: false; errors: string[] };
+  | {
+      code: "TEXT_TOO_SHORT";
+      length: number;
+    }
+  | {
+      code: "TEXT_TOO_LONG";
+      length: number;
+    }
+  | {
+      code: "LANGS_INCORRECT_LENGTH";
+      length: number;
+    }
+  | {
+      code: "LANGS_WRONG_TYPE";
+    }
+  | {
+      code: "LANGS_INVALID";
+      invalidLangs: string[];
+    };
 
-export const validate = (data: FormData): ValidationOutput => {
-  const errors: string[] = [];
+type ValidationOutput = {
+  langs: string[];
+  text: string;
+};
+
+export const validate = (
+  data: FormData
+): Result<ValidationOutput, ValidationError[]> => {
+  const errors: ValidationError[] = [];
 
   const text = data.get("text");
   if (text === null) {
-    errors.push("Must provide text (none provided)");
+    errors.push({
+      code: "TEXT_MISSING",
+    });
   } else if (text.length > 200) {
-    errors.push(
-      `Text must be no more than 200 characters long (${text.length} characters provided)`
-    );
+    errors.push({
+      code: "TEXT_TOO_LONG",
+      length: text.length,
+    });
   } else if (text.length < 1) {
-    errors.push(
-      `Text must at least 1 character long (${text.length} characters provided)`
-    );
+    errors.push({
+      code: "TEXT_TOO_SHORT",
+      length: text.length,
+    });
   }
 
   const langs = data.getAll("language");
   if (langs.length !== 4) {
-    errors.push(`Must provide 4 languages (${langs.length} provided)`);
+    errors.push({
+      code: "LANGS_INCORRECT_LENGTH",
+      length: langs.length,
+    });
+    errors.push();
   }
 
   if (!langs.every((l): l is string => typeof l === "string")) {
-    errors.push("All languages must be strings");
+    errors.push({
+      code: "LANGS_WRONG_TYPE",
+    });
   } else {
     const invalidLangs = langs.filter((l) => !validLangs.includes(l));
 
     if (invalidLangs.length > 0) {
-      errors.push(`Invalid languages provided (${invalidLangs.join(", ")})`);
+      errors.push({
+        code: "LANGS_INVALID",
+        invalidLangs,
+      });
+      errors.push();
     }
   }
 
   return errors.length === 0
     ? {
-        valid: true,
-        langs: langs as string[],
-        text: text as string,
+        success: true,
+        data: {
+          langs: langs as string[],
+          text: text as string,
+        },
       }
     : {
-        valid: false,
-        errors,
+        success: false,
+        error: errors,
       };
 };

@@ -9,14 +9,26 @@
       integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
       crossorigin="anonymous"
     ></script>
+    <meta
+      name="htmx-config"
+      content='{"responseHandling": [{"code":".*", "swap": true}]}'
+    />
+    <noscript>
+      <style>
+        .htmx-indicator {
+          display: none;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <form
       action="/obfuscation"
       method="post"
       data-hx-post="/obfuscation"
-      data-hx-target="#results"
-      data-hx-select="#results"
+      data-hx-target="#result"
+      data-hx-select="#result"
+      data-hx-indicator="#indicator"
     >
       <label>
         Take the following phrase:
@@ -131,7 +143,8 @@
       </label>
       Then back to the original language
       <button type="submit">Obfuscate</button>
+      <p id="indicator" class="htmx-indicator">Loading</p>
     </form>
-    <div id="results"></div>
+    <div id="result"></div>
   </body>
 </html>
