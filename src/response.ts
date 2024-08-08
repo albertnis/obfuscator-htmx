@@ -28,6 +28,8 @@ const buildValidationErrorMessage = (error: ValidationError): string => {
       return "All languages must be strings";
     case "LANGS_INVALID":
       return `Invalid languages provided (${error.invalidLangs.join(", ")})`;
+    case "SYNTHETIC_ERROR":
+      return 'An error was deliberately triggered by providing input starting with "!!!error"';
   }
 };
 
@@ -38,10 +40,15 @@ const validationErrorResponseTemplate = (
   ${head}
   <body>
     <div id="result">
-      <p>The following validation errors were encountered:</p>
-      <ul>
-        ${errors.map((e) => `<li>${buildValidationErrorMessage(e)}</li>`)}
-      </ul>
+      <div class="result-content result-error">
+        <details>
+        <summary>A validation error occurred</summary>
+        <p>The following validation errors were encountered:</p>
+        <ul>
+          ${errors.map((e) => `<li>${buildValidationErrorMessage(e)}</li>`)}
+        </ul>
+        </details>
+      </div>
     </div>
     <a href="/">Do another Obfuscation</a>
   </body>
@@ -61,7 +68,7 @@ export const buildValidationErrorResponse = (
 const buildTranslationErrorMessage = (error: TranslateError): string => {
   switch (error.code) {
     case "CF_AI_FAILED":
-      return "Translation failed. This site runs on the free tier of CloudFlare so may have been limited. Try again in a few minutes or tomorrow.";
+      return "Translation failed. This site runs on the free tier of CloudFlare Workers AI and is subject to rate limits and daily quotas. Try again in a few minutes. If that fails, try again in 24 hours.";
     case "TRANSLATE_TEXT_UNDEFINED":
       return "Translation returned no text";
   }
@@ -74,7 +81,12 @@ const translationErrorResponseTemplate = (
   ${head}
   <body>
     <div id="result">
-      <p>${buildTranslationErrorMessage(error)}</p>
+      <div class="result-content result-error">
+        <details>
+          <summary>A translation error occurred</summary>
+          <p>${buildTranslationErrorMessage(error)}</p>
+        </details>
+      </div>
     </div>
     <a href="/">Do another Obfuscation</a>
   </body>

@@ -48,6 +48,9 @@ export type ValidationError =
   | {
       code: "LANGS_INVALID";
       invalidLangs: string[];
+    }
+  | {
+      code: "SYNTHETIC_ERROR";
     };
 
 type ValidationOutput = {
@@ -74,6 +77,10 @@ export const validate = (
     errors.push({
       code: "TEXT_TOO_SHORT",
       length: text.length,
+    });
+  } else if (text.startsWith("!!!error")) {
+    errors.push({
+      code: "SYNTHETIC_ERROR",
     });
   }
 
