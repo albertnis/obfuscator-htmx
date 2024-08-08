@@ -1,28 +1,30 @@
 import { FormData } from "@cloudflare/workers-types";
 import type { Result } from "./types";
 
-const validLangs = [
-  "ar",
-  "zh",
-  "cs",
-  "da",
-  "nl",
-  "en",
-  "fi",
-  "fr",
-  "de",
-  "he",
-  "id",
-  "it",
-  "ja",
-  "ko",
-  "pl",
-  "pt",
-  "ru",
-  "es",
-  "sv",
-  "tr",
-];
+export const langs = {
+  ar: "Arabic",
+  zh: "Chinese",
+  cs: "Czech",
+  da: "Danish",
+  nl: "Dutch",
+  en: "English",
+  fi: "Finnish",
+  fr: "French",
+  de: "German",
+  he: "Hebrew",
+  id: "Indonesian",
+  it: "Italian",
+  ja: "Japanese",
+  ko: "Korean",
+  pl: "Polish",
+  pt: "Portuguese",
+  ru: "Russian",
+  es: "Spanish",
+  sv: "Swedish",
+  tr: "Turkish",
+};
+
+export type Language = keyof typeof langs;
 
 export type ValidationError =
   | {
@@ -49,7 +51,7 @@ export type ValidationError =
     };
 
 type ValidationOutput = {
-  langs: string[];
+  langs: Language[];
   text: string;
 };
 
@@ -89,7 +91,7 @@ export const validate = (
       code: "LANGS_WRONG_TYPE",
     });
   } else {
-    const invalidLangs = langs.filter((l) => !validLangs.includes(l));
+    const invalidLangs = langs.filter((l) => !Object.keys(langs.includes(l)));
 
     if (invalidLangs.length > 0) {
       errors.push({
@@ -104,7 +106,7 @@ export const validate = (
     ? {
         success: true,
         data: {
-          langs: langs as string[],
+          langs: langs as Language[],
           text: text as string,
         },
       }

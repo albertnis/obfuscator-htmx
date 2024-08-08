@@ -1,5 +1,18 @@
 import type { TranslateError, TranslationResults } from "./translate";
-import type { ValidationError } from "./validate";
+import { langs, type ValidationError } from "./validate";
+
+const head = `<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obfuscator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./style.css" />
+</head>`;
 
 const buildValidationErrorMessage = (error: ValidationError): string => {
   switch (error.code) {
@@ -22,11 +35,7 @@ const validationErrorResponseTemplate = (
   errors: ValidationError[]
 ) => `<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Obfuscator</title>
-  </head>
+  ${head}
   <body>
     <div id="result">
       <p>The following validation errors were encountered:</p>
@@ -62,11 +71,7 @@ const translationErrorResponseTemplate = (
   error: TranslateError
 ) => `<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Obfuscator</title>
-  </head>
+  ${head}
   <body>
     <div id="result">
       <p>${buildTranslationErrorMessage(error)}</p>
@@ -86,20 +91,33 @@ export const buildTranslationErrorResponse = (error: TranslateError) =>
 
 const successTemplate = (rs: TranslationResults) => `<!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Obfuscator</title>
-    </head>
+    ${head}
     <body>
       <div id="result">
-        <ol>
-          <li>(${rs[0].language}) ${rs[0].text}</li>
-          <li>(${rs[1].language}) ${rs[1].text}</li>
-          <li>(${rs[2].language}) ${rs[2].text}</li>
-          <li>(${rs[3].language}) ${rs[3].text}</li>
-          <li><b>(${rs[4].language}) ${rs[4].text}</b></li>
-        </ol>
+        <div class="result-content">
+          <span class="result-label">The result:</span>
+          <details>
+            <summary>${rs[4].text}</summary>
+
+            <ol>
+              <li><span class="result-lang">${langs[rs[0].language]}</span> ${
+  rs[0].text
+}</li>
+              <li><span class="result-lang">${langs[rs[1].language]}</span> ${
+  rs[1].text
+}</li>
+              <li><span class="result-lang">${langs[rs[2].language]}</span> ${
+  rs[2].text
+}</li>
+              <li><span class="result-lang">${langs[rs[3].language]}</span> ${
+  rs[3].text
+}</li>
+              <li><b><span class="result-lang">${
+                langs[rs[4].language]
+              }</span> ${rs[4].text}</b></li>
+            </ol>
+          </details>
+        </div>
       </div>
       <a href="/">Do another Obfuscation</a>
     </body>

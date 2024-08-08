@@ -1,8 +1,9 @@
 import type { Ai } from "@cloudflare/workers-types";
 import type { Result } from "./types";
+import type { Language } from "./validate";
 
 export interface TextAndLanguage {
-  language: string;
+  language: Language;
   text: string;
 }
 
@@ -21,7 +22,7 @@ export const translate =
   (cfAi: Ai) =>
   async (
     input: TextAndLanguage,
-    destinationLanguage: string
+    destinationLanguage: Language
   ): Promise<Result<TextAndLanguage, TranslateError>> => {
     if (input.language === destinationLanguage) {
       return {
