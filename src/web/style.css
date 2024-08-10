@@ -121,6 +121,7 @@ button:focus-visible {
 
 .text-input-container {
   --fg: var(--fg-dark-scheme);
+  --fg1: var(--fg1-dark-scheme);
   color: var(--fg);
   background: rgb(130, 10, 113);
   background: linear-gradient(
@@ -140,7 +141,7 @@ button:focus-visible {
 #language-0 {
   color: var(--fg-dark-scheme);
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--fg1);
   font-size: 1em;
   padding: 1px 3px;
   font-weight: inherit;
@@ -150,7 +151,7 @@ button:focus-visible {
 .text-input-container input {
   color: inherit;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--fg1);
   font-size: 1.5em;
   font-weight: 700;
   border-radius: 4px;
@@ -294,7 +295,9 @@ button:focus-visible {
 }
 
 .result-content {
-  color: var(--fg-dark-scheme);
+  --fg: var(--fg-dark-scheme);
+  --fg1: var(--fg1-dark-scheme);
+  color: var(--fg);
   margin-top: 3rem;
   background: linear-gradient(
     32deg,
@@ -323,8 +326,7 @@ button:focus-visible {
 }
 
 .result-lang {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--fg1);
   border-radius: 4px;
   padding: 0.1em 0.2em;
   font-size: 0.7em;
