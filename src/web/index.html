@@ -29,13 +29,15 @@
     </noscript>
   </head>
   <body>
-    <h1>Obfuscator</h1>
-    <p class="description">
-      Highlighting the flaws of language and translation.
-      <span class="attribution"
-        >Made with aroha by <a href="https://albert.nz">Albert</a>.</span
-      >
-    </p>
+    <div class="block-title">
+      <h1 class="title">Obfuscator</h1>
+      <p class="description">
+        Highlighting the flaws of language and translation.
+        <span class="attribution"
+          >Made with aroha by <a href="https://albert.nz">Albert</a>.</span
+        >
+      </p>
+    </div>
     <form
       action="/obfuscation"
       method="get"
@@ -44,6 +46,7 @@
       data-hx-select="#result"
       data-hx-indicator="#indicator"
       data-hx-disabled-elt="#form-fields"
+      class="form"
     >
       <fieldset id="form-fields">
         <div class="text-input-container">
@@ -83,93 +86,93 @@
             required
           />
         </div>
-        <label class="language-label language-label-0">
-          <span>Translate it from:</span>
-        </label>
-        <span class="target-languages-label">Translate it through</span>
-        <div class="target-languages">
-          <label class="language-label">
-            <span>Then through:</span>
-            <select name="language" id="language-1">
-              <option value="ar">Arabic</option>
-              <option value="zh" selected>Chinese</option>
-              <option value="cs">Czech</option>
-              <option value="da">Danish</option>
-              <option value="nl">Dutch</option>
-              <option value="en">English</option>
-              <option value="fi">Finnish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="he">Hebrew</option>
-              <option value="id">Indonesian</option>
-              <option value="it">Italian</option>
-              <option value="ja">Japanese</option>
-              <option value="ko">Korean</option>
-              <option value="pl">Polish</option>
-              <option value="pt">Portuguese</option>
-              <option value="ru">Russian</option>
-              <option value="es">Spanish</option>
-              <option value="sv">Swedish</option>
-              <option value="tr">Turkish</option>
-            </select>
-          </label>
-          <label class="language-label">
-            <span>Then through:</span>
-            <select name="language" id="language-2">
-              <option value="ar">Arabic</option>
-              <option value="zh">Chinese</option>
-              <option value="cs">Czech</option>
-              <option value="da">Danish</option>
-              <option value="nl">Dutch</option>
-              <option value="en">English</option>
-              <option value="fi">Finnish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="he">Hebrew</option>
-              <option value="id">Indonesian</option>
-              <option value="it">Italian</option>
-              <option value="ja">Japanese</option>
-              <option value="ko">Korean</option>
-              <option value="pl">Polish</option>
-              <option value="pt">Portuguese</option>
-              <option value="ru" selected>Russian</option>
-              <option value="es">Spanish</option>
-              <option value="sv">Swedish</option>
-              <option value="tr">Turkish</option>
-            </select>
-          </label>
-          <label class="language-label">
-            <span>Then through:</span>
-            <select name="language" id="language-3">
-              <option value="ar">Arabic</option>
-              <option value="zh">Chinese</option>
-              <option value="cs">Czech</option>
-              <option value="da">Danish</option>
-              <option value="nl">Dutch</option>
-              <option value="en">English</option>
-              <option value="fi">Finnish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="he" selected>Hebrew</option>
-              <option value="id">Indonesian</option>
-              <option value="it">Italian</option>
-              <option value="ja">Japanese</option>
-              <option value="ko">Korean</option>
-              <option value="pl">Polish</option>
-              <option value="pt">Portuguese</option>
-              <option value="ru">Russian</option>
-              <option value="es">Spanish</option>
-              <option value="sv">Swedish</option>
-              <option value="tr">Turkish</option>
-            </select>
-          </label>
+        <div class="block-target-languages">
+          <div class="target-languages-label">
+            <label for="language-1">Translate it through</label>
+          </div>
+          <div class="target-languages">
+            <label class="language-label">
+              <span class="hidden-label">First to:</span>
+              <select name="language" id="language-1">
+                <option value="ar">Arabic</option>
+                <option value="zh" selected>Chinese</option>
+                <option value="cs">Czech</option>
+                <option value="da">Danish</option>
+                <option value="nl">Dutch</option>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="he">Hebrew</option>
+                <option value="id">Indonesian</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="pl">Polish</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru">Russian</option>
+                <option value="es">Spanish</option>
+                <option value="sv">Swedish</option>
+                <option value="tr">Turkish</option>
+              </select>
+            </label>
+            <label class="language-label">
+              <span class="hidden-label">Then to:</span>
+              <select name="language" id="language-2">
+                <option value="ar">Arabic</option>
+                <option value="zh">Chinese</option>
+                <option value="cs">Czech</option>
+                <option value="da">Danish</option>
+                <option value="nl">Dutch</option>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="he">Hebrew</option>
+                <option value="id">Indonesian</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="pl">Polish</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru" selected>Russian</option>
+                <option value="es">Spanish</option>
+                <option value="sv">Swedish</option>
+                <option value="tr">Turkish</option>
+              </select>
+            </label>
+            <label class="language-label">
+              <span class="hidden-label">Then to:</span>
+              <select name="language" id="language-3">
+                <option value="ar">Arabic</option>
+                <option value="zh">Chinese</option>
+                <option value="cs">Czech</option>
+                <option value="da">Danish</option>
+                <option value="nl">Dutch</option>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="he" selected>Hebrew</option>
+                <option value="id">Indonesian</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="pl">Polish</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru">Russian</option>
+                <option value="es">Spanish</option>
+                <option value="sv">Swedish</option>
+                <option value="tr">Turkish</option>
+              </select>
+            </label>
+          </div>
+          <div class="original-language-label"></div>
+          Then back to the original language
         </div>
-        <span class="original-language-label"
-          >Then back to the original language</span
-        >
-        <div>
-          <button type="submit">
-            <div id="indicator">
+        <div class="block-submit">
+          <button type="submit" class="button">
+            <div id="indicator" aria-hidden="true">
               <svg viewBox="-10 -10 20 20" class="loading-spinner">
                 <circle cx="0" cy="0" r="8"></circle>
               </svg>
