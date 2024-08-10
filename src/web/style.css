@@ -91,6 +91,10 @@ button {
   color: inherit;
 }
 
+option {
+  background-color: var(--bg);
+}
+
 input::placeholder {
   color: var(--fg1);
 }
@@ -133,6 +137,7 @@ button:focus-visible {
 }
 
 .text-input-container {
+  --bg: var(--bg-dark-scheme);
   --fg: var(--fg-dark-scheme);
   --fg1: var(--fg1-dark-scheme);
   color: var(--fg);
