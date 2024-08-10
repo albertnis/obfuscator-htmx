@@ -73,6 +73,15 @@ a:hover {
   text-decoration-thickness: 0.3em;
 }
 
+summary {
+  border-radius: 4px;
+}
+
+summary:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+}
+
 input,
 select,
 option,
