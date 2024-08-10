@@ -10,6 +10,7 @@ import {
   buildTranslationErrorResponse,
   buildValidationErrorResponse,
 } from "./response";
+import { escapeUnsafeHtml } from "./escape";
 
 const fetch = async (req: Request, env: any): Promise<Response> => {
   const url = new URL(req.url);
@@ -50,7 +51,11 @@ const fetch = async (req: Request, env: any): Promise<Response> => {
       }
     }
 
-    return buildSuccessResponse(results);
+    const sanitisedResults: TranslationResults = results.map(
+      ({ text, ...rest }) => ({ text: escapeUnsafeHtml(text), ...rest })
+    );
+
+    return buildSuccessResponse(sanitisedResults);
   }
 
   return env.ASSETS.fetch(req);
