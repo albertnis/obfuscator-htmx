@@ -21,7 +21,7 @@ const buildValidationErrorMessage = (error: ValidationError): string => {
     case "TEXT_TOO_SHORT":
       return `Text must at least 1 character long (${error.length} characters provided)`;
     case "TEXT_TOO_LONG":
-      return `Text must be no more than 200 characters long (${error.length} characters provided)`;
+      return `Text must be no more than 100 characters long (${error.length} characters provided)`;
     case "LANGS_INCORRECT_LENGTH":
       return `Must provide 4 languages (${error.length} provided)`;
     case "LANGS_WRONG_TYPE":

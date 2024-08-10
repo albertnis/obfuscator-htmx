@@ -68,7 +68,7 @@ export const validate = (
     errors.push({
       code: "TEXT_MISSING",
     });
-  } else if (text.length > 200) {
+  } else if (text.length > 100) {
     errors.push({
       code: "TEXT_TOO_LONG",
       length: text.length,
