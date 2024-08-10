@@ -180,11 +180,17 @@ button:focus-visible {
 
 .target-languages {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.5rem;
   grid-column-start: main-start;
   grid-column-end: main-end;
+}
+
+.target-languages .arrow {
+  color: var(--fg1);
+  margin-right: 0.5rem;
 }
 
 .block-target-languages {
@@ -203,6 +209,11 @@ button:focus-visible {
   border: none;
   border-radius: 4px;
   padding: 0.5em;
+}
+
+.language-label {
+  display: flex;
+  align-items: center;
 }
 
 .original-language-label {
