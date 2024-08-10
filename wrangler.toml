@@ -1,5 +1,5 @@
 name = "obfuscator"
-compatibility_date = "2024-08-02"
+compatibility_date = "2024-07-25"
 pages_build_output_dir = "src/web"
 
 [ai]
