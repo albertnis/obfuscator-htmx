@@ -252,7 +252,8 @@ button:focus-visible {
   transition: opacity 0.3s ease-in-out;
 }
 
-.button:not(:disabled):hover {
+.button:not(:disabled):hover,
+.button:not(:disabled):focus-visible {
   color: var(--fg-dark-scheme);
   background-position: 50% 0;
   animation: morphing 3s ease-in-out 0s infinite alternate;
