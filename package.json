@@ -2,7 +2,7 @@
   "name": "obfuscator-htmx",
   "module": "index.ts",
   "scripts": {
-    "run": "wrangler pages dev --port 8787"
+    "dev": "wrangler pages dev --port 8787 --ai AI"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240729.0",
