@@ -2,9 +2,11 @@
 
 _Highlighting the potentially hilarious flaws of modern computer translators_
 
-It follows the [original PHP version](https://github.com/albertnis/obfuscator) and the [SSR React rewrite which ran on Lambda](https://github.com/albertnis/obfuscator-serverless).
+![](./screenshot.png)
 
-The focus of this version is simplicity: few dependencies, little custom frontend JS and a straightforward hosting setup.
+It follows the [original PHP version](https://github.com/albertnis/obfuscator) and the [SSR React rewrite which ran on Lambda](https://github.com/albertnis/obfuscator-serverless). The focus of this version is simplicity: few dependencies, little custom frontend JS and a straightforward hosting setup.
+
+It is hosted at [obfuscator.albert.nz](https://obfuscator.albert.nz).
 
 ## Running locally
 
