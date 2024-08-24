@@ -84,21 +84,23 @@ export const validate = (
     });
   }
 
-  const langs = data.getAll("language");
-  if (langs.length !== 4) {
+  const providedLangs = data.getAll("language");
+  if (providedLangs.length !== 4) {
     errors.push({
       code: "LANGS_INCORRECT_LENGTH",
-      length: langs.length,
+      length: providedLangs.length,
     });
     errors.push();
   }
 
-  if (!langs.every((l): l is string => typeof l === "string")) {
+  if (!providedLangs.every((l): l is string => typeof l === "string")) {
     errors.push({
       code: "LANGS_WRONG_TYPE",
     });
   } else {
-    const invalidLangs = langs.filter((l) => !Object.keys(langs.includes(l)));
+    const invalidLangs = providedLangs.filter(
+      (l) => !Object.keys(langs).includes(l)
+    );
 
     if (invalidLangs.length > 0) {
       errors.push({
@@ -113,7 +115,7 @@ export const validate = (
     ? {
         success: true,
         data: {
-          langs: langs as Language[],
+          langs: providedLangs as Language[],
           text: text as string,
         },
       }
