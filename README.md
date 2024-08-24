@@ -12,7 +12,7 @@ It is hosted at [obfuscator.albert.nz](https://obfuscator.albert.nz).
 
 This CloudFlare Pages site is statically served from `src/web`. The backend code is defined in `src/web/_worker.js` as per Pages convention. All bundling and transpilation for the backend abstracted by the `wrangler` dependency (CloudFlare's CLI).
 
-> !IMPORTANT
+> [!IMPORTANT]
 > Ensure `node` is available in PATH before running.
 > `bun` is used as a very streamlined test runner and package manager only; `wrangler` relies on Node and will fail in subtle ways if it's not available.
 
